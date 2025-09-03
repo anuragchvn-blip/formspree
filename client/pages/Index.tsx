@@ -1,73 +1,9 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
 import { Mail, ChefHat, Utensils, ArrowRight } from "lucide-react";
-import { WaitlistResponse } from "@shared/api";
 
 export default function Index() {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !name) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill in both your name and email address.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    try {
-      // Use FormData for better Formspree compatibility
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append(
-        "message",
-        `New waitlist signup for Meat Delicacy from ${name} (${email}) at ${new Date().toLocaleString()}`,
-      );
-      formData.append(
-        "_subject",
-        `New Meat Delicacy Waitlist Signup - ${name}`,
-      );
-
-      const response = await fetch("https://formspree.io/f/mvgbwenq", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.ok) {
-        toast({
-          title: "Welcome to the waitlist!",
-          description: "You've been added and Ruchitha will be notified.",
-        });
-        setEmail("");
-        setName("");
-      } else {
-        throw new Error(result.error || "Failed to join waitlist");
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      toast({
-        title: "Something went wrong",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background meat-texture">
       {/* Header */}
@@ -76,9 +12,7 @@ export default function Index() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ChefHat className="h-6 w-6 text-brand-charcoal" />
-              <span className="text-lg font-semibold text-brand-charcoal">
-                Meat Delicacy
-              </span>
+              <span className="text-lg font-semibold text-brand-charcoal">Meat Delicacy</span>
             </div>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Utensils className="h-4 w-4" />
@@ -92,6 +26,7 @@ export default function Index() {
       <main className="container mx-auto px-4 py-16 lg:py-24">
         <div className="max-w-4xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
             {/* Hero Content */}
             <div className="space-y-8">
               <div className="space-y-4">
@@ -99,21 +34,18 @@ export default function Index() {
                   <span className="w-2 h-2 bg-brand-ash rounded-full animate-pulse"></span>
                   Launching Soon
                 </div>
-
+                
                 <h1 className="text-4xl lg:text-6xl font-bold text-brand-charcoal leading-tight">
                   No more{" "}
-                  <span className="line-through text-brand-ash decoration-2">
-                    Licious
-                  </span>
+                  <span className="line-through text-brand-ash decoration-2">Licious</span>
                   <br />
                   but yes to{" "}
                   <span className="text-brand-iron">Meat Delicacy</span>
                 </h1>
-
+                
                 <p className="text-xl text-brand-ash leading-relaxed">
-                  Experience premium meat delivery that redefines quality,
-                  taste, and freshness. Join our exclusive waitlist for early
-                  access to the finest cuts.
+                  Experience premium meat delivery that redefines quality, taste, and freshness. 
+                  Join our exclusive waitlist for early access to the finest cuts.
                 </p>
               </div>
 
@@ -137,25 +69,23 @@ export default function Index() {
             <div className="bg-card border border-border rounded-2xl p-8 shadow-lg">
               <div className="space-y-6">
                 <div className="text-center space-y-2">
-                  <h2 className="text-2xl font-semibold text-foreground">
-                    Join the Waitlist
-                  </h2>
+                  <h2 className="text-2xl font-semibold text-foreground">Join the Waitlist</h2>
                   <p className="text-muted-foreground">
                     Be among the first to experience Meat Delicacy
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Pure HTML Form for Deployment Reliability */}
+                <form action="https://formspree.io/f/mvgbwenq" method="POST" className="space-y-4">
                   <div className="space-y-2">
                     <Label htmlFor="name" className="text-sm font-medium">
                       Full Name
                     </Label>
                     <Input
                       id="name"
+                      name="name"
                       type="text"
                       placeholder="Enter your full name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
                       className="h-12"
                       required
                     />
@@ -167,33 +97,28 @@ export default function Index() {
                     </Label>
                     <Input
                       id="email"
+                      name="email"
                       type="email"
                       placeholder="Enter your email address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
                       className="h-12"
                       required
                     />
                   </div>
 
+                  {/* Hidden fields for Formspree */}
+                  <input type="hidden" name="_subject" value="New Meat Delicacy Waitlist Signup" />
+                  <input type="hidden" name="message" value="New waitlist signup for Meat Delicacy" />
+
                   <Button
                     type="submit"
                     size="lg"
-                    disabled={isSubmitting}
                     className="w-full h-12 bg-brand-charcoal hover:bg-brand-iron text-white font-medium"
                   >
-                    {isSubmitting ? (
-                      <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
-                        Joining...
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-2">
-                        <Mail className="h-4 w-4" />
-                        Join Waitlist
-                        <ArrowRight className="h-4 w-4" />
-                      </div>
-                    )}
+                    <div className="flex items-center gap-2">
+                      <Mail className="h-4 w-4" />
+                      Join Waitlist
+                      <ArrowRight className="h-4 w-4" />
+                    </div>
                   </Button>
                 </form>
 
@@ -214,9 +139,7 @@ export default function Index() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
               <ChefHat className="h-5 w-5 text-brand-charcoal" />
-              <span className="font-medium text-brand-charcoal">
-                Meat Delicacy
-              </span>
+              <span className="font-medium text-brand-charcoal">Meat Delicacy</span>
             </div>
             <p className="text-sm text-muted-foreground">
               © 2024 Meat Delicacy. Premium meat delivery reimagined.
