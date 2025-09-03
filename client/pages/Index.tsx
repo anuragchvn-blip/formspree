@@ -126,6 +126,11 @@ export default function Index() {
                     name="message"
                     value="New waitlist signup for Meat Delicacy"
                   />
+                  <input
+                    type="hidden"
+                    name="_next"
+                    value={`${window.location.origin}/success`}
+                  />
 
                   <Button
                     type="submit"
