@@ -27,7 +27,7 @@ export default function Index() {
 
     try {
       // Submit to Formspree webhook
-      const response = await fetch("https://formspree.io/f/ruchitha500058@gmail.com", {
+      const response = await fetch("https://formspree.io/f/mvgbwenq", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
