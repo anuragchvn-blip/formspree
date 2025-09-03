@@ -26,21 +26,21 @@ export default function Index() {
     setIsSubmitting(true);
 
     try {
-      // Submit to Formspree webhook
+      // Use FormData for better Formspree compatibility
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('message', `New waitlist signup for Meat Delicacy from ${name} (${email}) at ${new Date().toLocaleString()}`);
+      formData.append('_subject', `New Meat Delicacy Waitlist Signup - ${name}`);
+
       const response = await fetch("https://formspree.io/f/mvgbwenq", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          message: `New waitlist signup for Meat Delicacy from ${name} (${email}) at ${new Date().toLocaleString()}`,
-          _subject: `New Meat Delicacy Waitlist Signup - ${name}`,
-        }),
+        body: formData,
       });
 
-      if (response.ok) {
+      const result = await response.json();
+
+      if (response.ok && result.ok) {
         toast({
           title: "Welcome to the waitlist!",
           description: "You've been added and Ruchitha will be notified.",
@@ -48,9 +48,10 @@ export default function Index() {
         setEmail("");
         setName("");
       } else {
-        throw new Error("Failed to join waitlist");
+        throw new Error(result.error || "Failed to join waitlist");
       }
     } catch (error) {
+      console.error("Form submission error:", error);
       toast({
         title: "Something went wrong",
         description: "Please try again later.",
