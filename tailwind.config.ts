@@ -39,6 +39,15 @@ export default {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        // Brand colors for meat delicacy theme
+        brand: {
+          charcoal: "hsl(var(--brand-charcoal))",
+          slate: "hsl(var(--brand-slate))",
+          ash: "hsl(var(--brand-ash))",
+          smoke: "hsl(var(--brand-smoke))",
+          iron: "hsl(var(--brand-iron))",
+          pearl: "hsl(var(--brand-pearl))",
+        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -57,6 +66,9 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
