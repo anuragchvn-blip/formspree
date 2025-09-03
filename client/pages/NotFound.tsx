@@ -20,7 +20,9 @@ const NotFound = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-2">
             <ChefHat className="h-6 w-6 text-brand-charcoal" />
-            <span className="text-lg font-semibold text-brand-charcoal">Meat Delicacy</span>
+            <span className="text-lg font-semibold text-brand-charcoal">
+              Meat Delicacy
+            </span>
           </div>
         </div>
       </header>
@@ -29,13 +31,15 @@ const NotFound = () => {
       <main className="container mx-auto px-4 py-16 lg:py-24">
         <div className="max-w-2xl mx-auto text-center space-y-8">
           <div className="space-y-4">
-            <h1 className="text-6xl lg:text-8xl font-bold text-brand-charcoal">404</h1>
+            <h1 className="text-6xl lg:text-8xl font-bold text-brand-charcoal">
+              404
+            </h1>
             <h2 className="text-2xl lg:text-3xl font-semibold text-brand-iron">
               Page Not Found
             </h2>
             <p className="text-lg text-brand-ash leading-relaxed">
-              Looks like this page has gone missing, just like the old meat delivery services. 
-              Let's get you back to something delicious.
+              Looks like this page has gone missing, just like the old meat
+              delivery services. Let's get you back to something delicious.
             </p>
           </div>
 
@@ -67,7 +71,9 @@ const NotFound = () => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
               <ChefHat className="h-5 w-5 text-brand-charcoal" />
-              <span className="font-medium text-brand-charcoal">Meat Delicacy</span>
+              <span className="font-medium text-brand-charcoal">
+                Meat Delicacy
+              </span>
             </div>
             <p className="text-sm text-muted-foreground">
               © 2024 Meat Delicacy. Premium meat delivery reimagined.

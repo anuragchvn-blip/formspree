@@ -28,7 +28,7 @@ export const handleWaitlistSubmission: RequestHandler = async (req, res) => {
 
     // Log the submission for now
     console.log("✅ New waitlist submission:", submission);
-    
+
     // In production, you would integrate with:
     // - Gmail SMTP (requires app password)
     // - SendGrid, Mailgun, or Resend API
@@ -36,8 +36,12 @@ export const handleWaitlistSubmission: RequestHandler = async (req, res) => {
 
     // Simulate successful email notification
     console.log(`📧 Email notification sent to: ruchitha500058@gmail.com`);
-    console.log(`📋 Subject: New Meat Delicacy Waitlist Signup - ${submission.name}`);
-    console.log(`📝 User: ${submission.name} (${submission.email}) joined at ${submission.timestamp}`);
+    console.log(
+      `📋 Subject: New Meat Delicacy Waitlist Signup - ${submission.name}`,
+    );
+    console.log(
+      `📝 User: ${submission.name} (${submission.email}) joined at ${submission.timestamp}`,
+    );
 
     res.status(200).json({
       success: true,
