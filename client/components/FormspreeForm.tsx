@@ -5,8 +5,8 @@ import { Mail, ArrowRight } from "lucide-react";
 
 export function FormspreeForm() {
   return (
-    <form 
-      action="https://formspree.io/f/mvgbwenq" 
+    <form
+      action="https://formspree.io/f/mvgbwenq"
       method="POST"
       className="space-y-4"
     >
@@ -39,19 +39,19 @@ export function FormspreeForm() {
       </div>
 
       {/* Hidden fields for Formspree */}
-      <input 
-        type="hidden" 
-        name="_subject" 
+      <input
+        type="hidden"
+        name="_subject"
         value="New Meat Delicacy Waitlist Signup"
       />
-      <input 
-        type="hidden" 
-        name="_next" 
+      <input
+        type="hidden"
+        name="_next"
         value={`${window.location.origin}/?success=true`}
       />
-      <input 
-        type="hidden" 
-        name="message" 
+      <input
+        type="hidden"
+        name="message"
         value="New waitlist signup for Meat Delicacy"
       />
 

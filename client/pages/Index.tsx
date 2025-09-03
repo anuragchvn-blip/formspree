@@ -28,10 +28,16 @@ export default function Index() {
     try {
       // Use FormData for better Formspree compatibility
       const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('message', `New waitlist signup for Meat Delicacy from ${name} (${email}) at ${new Date().toLocaleString()}`);
-      formData.append('_subject', `New Meat Delicacy Waitlist Signup - ${name}`);
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append(
+        "message",
+        `New waitlist signup for Meat Delicacy from ${name} (${email}) at ${new Date().toLocaleString()}`,
+      );
+      formData.append(
+        "_subject",
+        `New Meat Delicacy Waitlist Signup - ${name}`,
+      );
 
       const response = await fetch("https://formspree.io/f/mvgbwenq", {
         method: "POST",
