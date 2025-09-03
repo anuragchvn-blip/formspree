@@ -129,7 +129,7 @@ export default function Index() {
                   <input
                     type="hidden"
                     name="_next"
-                    value={`${window.location.origin}/success`}
+                    value="https://formspree-one.vercel.app/success"
                   />
 
                   <Button
