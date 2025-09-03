@@ -29,12 +29,15 @@ const App = () => (
   </QueryClientProvider>
 );
 
-// Prevent multiple createRoot calls
+// Prevent multiple createRoot calls during hot reloading
 const container = document.getElementById("root")!;
-let root: ReturnType<typeof createRoot> | null = null;
 
-if (!root) {
-  root = createRoot(container);
+// Check if container already has a React root
+if (!(container as any)._reactRootContainer) {
+  const root = createRoot(container);
+  root.render(<App />);
+} else {
+  // If root already exists, just re-render
+  const root = createRoot(container);
+  root.render(<App />);
 }
-
-root.render(<App />);
