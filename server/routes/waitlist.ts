@@ -1,10 +1,5 @@
 import { RequestHandler } from "express";
-
-export interface WaitlistSubmission {
-  name: string;
-  email: string;
-  timestamp?: string;
-}
+import { WaitlistSubmission, WaitlistResponse } from "@shared/api";
 
 export const handleWaitlistSubmission: RequestHandler = async (req, res) => {
   try {
