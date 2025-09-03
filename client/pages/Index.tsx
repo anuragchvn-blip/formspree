@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, ChefHat, Utensils, ArrowRight } from "lucide-react";
+import { WaitlistResponse } from "@shared/api";
 
 export default function Index() {
   const [email, setEmail] = useState("");
