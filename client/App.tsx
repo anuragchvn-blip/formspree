@@ -32,12 +32,13 @@ const App = () => (
 // Prevent multiple createRoot calls during hot reloading
 const container = document.getElementById("root")!;
 
-// Check if container already has a React root
-if (!(container as any)._reactRootContainer) {
-  const root = createRoot(container);
-  root.render(<App />);
-} else {
-  // If root already exists, just re-render
-  const root = createRoot(container);
-  root.render(<App />);
+// Store root instance globally to persist across hot reloads
+declare global {
+  var __react_root__: ReturnType<typeof createRoot> | undefined;
 }
+
+if (!globalThis.__react_root__) {
+  globalThis.__react_root__ = createRoot(container);
+}
+
+globalThis.__react_root__.render(<App />);
