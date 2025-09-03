@@ -10,3 +10,25 @@
 export interface DemoResponse {
   message: string;
 }
+
+/**
+ * Waitlist submission request type
+ */
+export interface WaitlistSubmission {
+  name: string;
+  email: string;
+  timestamp?: string;
+}
+
+/**
+ * Waitlist submission response type
+ */
+export interface WaitlistResponse {
+  success: boolean;
+  message: string;
+  data?: {
+    name: string;
+    email: string;
+  };
+  error?: string;
+}
