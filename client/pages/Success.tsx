@@ -9,7 +9,9 @@ export default function Success() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-2">
             <ChefHat className="h-6 w-6 text-brand-charcoal" />
-            <span className="text-lg font-semibold text-brand-charcoal">Meat Delicacy</span>
+            <span className="text-lg font-semibold text-brand-charcoal">
+              Meat Delicacy
+            </span>
           </div>
         </div>
       </header>
@@ -23,19 +25,22 @@ export default function Success() {
                 <CheckCircle className="h-10 w-10 text-green-600 dark:text-green-400" />
               </div>
             </div>
-            
+
             <div className="space-y-4">
               <h1 className="text-3xl lg:text-4xl font-bold text-brand-charcoal">
                 Welcome to the Waitlist!
               </h1>
               <p className="text-xl text-brand-ash leading-relaxed">
-                Thank you for joining the Meat Delicacy waitlist. You're now among the exclusive 
-                group who will get early access to premium meat delivery.
+                Thank you for joining the Meat Delicacy waitlist. You're now
+                among the exclusive group who will get early access to premium
+                meat delivery.
               </p>
             </div>
 
             <div className="bg-card border border-border rounded-lg p-6 space-y-4">
-              <h2 className="text-lg font-semibold text-foreground">What happens next?</h2>
+              <h2 className="text-lg font-semibold text-foreground">
+                What happens next?
+              </h2>
               <div className="space-y-3 text-left">
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-brand-iron rounded-full mt-2"></div>
@@ -76,7 +81,9 @@ export default function Success() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="flex items-center gap-2">
               <ChefHat className="h-5 w-5 text-brand-charcoal" />
-              <span className="font-medium text-brand-charcoal">Meat Delicacy</span>
+              <span className="font-medium text-brand-charcoal">
+                Meat Delicacy
+              </span>
             </div>
             <p className="text-sm text-muted-foreground">
               © 2024 Meat Delicacy. Premium meat delivery reimagined.
