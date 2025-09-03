@@ -34,7 +34,9 @@ export default function Index() {
         body: JSON.stringify({ email, name }),
       });
 
-      if (response.ok) {
+      const data: WaitlistResponse = await response.json();
+
+      if (response.ok && data.success) {
         toast({
           title: "Welcome to the waitlist!",
           description: "We'll notify you when Meat Delicacy launches.",
@@ -42,7 +44,7 @@ export default function Index() {
         setEmail("");
         setName("");
       } else {
-        throw new Error("Failed to join waitlist");
+        throw new Error(data.error || "Failed to join waitlist");
       }
     } catch (error) {
       toast({
