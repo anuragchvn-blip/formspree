@@ -26,25 +26,29 @@ export default function Index() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/waitlist", {
+      // Submit to Formspree webhook
+      const response = await fetch("https://formspree.io/f/ruchitha500058@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, name }),
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: `New waitlist signup for Meat Delicacy from ${name} (${email}) at ${new Date().toLocaleString()}`,
+          _subject: `New Meat Delicacy Waitlist Signup - ${name}`,
+        }),
       });
 
-      const data: WaitlistResponse = await response.json();
-
-      if (response.ok && data.success) {
+      if (response.ok) {
         toast({
           title: "Welcome to the waitlist!",
-          description: "Ruchitha has been notified of your signup.",
+          description: "You've been added and Ruchitha will be notified.",
         });
         setEmail("");
         setName("");
       } else {
-        throw new Error(data.error || "Failed to join waitlist");
+        throw new Error("Failed to join waitlist");
       }
     } catch (error) {
       toast({
