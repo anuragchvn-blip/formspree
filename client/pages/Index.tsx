@@ -26,31 +26,26 @@ export default function Index() {
     setIsSubmitting(true);
 
     try {
-      // Create mailto link with form data
-      const subject = encodeURIComponent(`New Meat Delicacy Waitlist Signup - ${name}`);
-      const body = encodeURIComponent(
-        `New waitlist submission for Meat Delicacy:\n\n` +
-        `Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `Timestamp: ${new Date().toLocaleString()}\n\n` +
-        `This person is interested in joining the Meat Delicacy waitlist.`
-      );
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, name }),
+      });
 
-      const mailtoLink = `mailto:ruchitha500058@gmail.com?subject=${subject}&body=${body}`;
+      const data: WaitlistResponse = await response.json();
 
-      // Open default email client
-      window.location.href = mailtoLink;
-
-      // Show success message after a brief delay
-      setTimeout(() => {
+      if (response.ok && data.success) {
         toast({
-          title: "Email client opened!",
-          description: "Please send the email to complete your waitlist signup.",
+          title: "Welcome to the waitlist!",
+          description: "Ruchitha has been notified of your signup.",
         });
         setEmail("");
         setName("");
-      }, 1000);
-
+      } else {
+        throw new Error(data.error || "Failed to join waitlist");
+      }
     } catch (error) {
       toast({
         title: "Something went wrong",
