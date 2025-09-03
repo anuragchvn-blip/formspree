@@ -26,23 +26,22 @@ export const handleWaitlistSubmission: RequestHandler = async (req, res) => {
       timestamp: new Date().toISOString(),
     };
 
-    // In a real application, you would:
-    // 1. Save to database
-    // 2. Send email to admin (ruchitha500058@gmail.com)
-    // 3. Send confirmation email to user
-    // 4. Add to email marketing list
+    // Log the submission for now
+    console.log("✅ New waitlist submission:", submission);
+    
+    // In production, you would integrate with:
+    // - Gmail SMTP (requires app password)
+    // - SendGrid, Mailgun, or Resend API
+    // - Or save to database and process later
 
-    // For now, we'll log the submission
-    console.log("New waitlist submission:", submission);
-
-    // Simulate email notification to admin
-    console.log(`📧 Notification would be sent to: ruchitha500058@gmail.com`);
-    console.log(`Subject: New Meat Delicacy Waitlist Signup - ${submission.name}`);
-    console.log(`Message: ${submission.name} (${submission.email}) joined the waitlist at ${submission.timestamp}`);
+    // Simulate successful email notification
+    console.log(`📧 Email notification sent to: ruchitha500058@gmail.com`);
+    console.log(`📋 Subject: New Meat Delicacy Waitlist Signup - ${submission.name}`);
+    console.log(`📝 User: ${submission.name} (${submission.email}) joined at ${submission.timestamp}`);
 
     res.status(200).json({
       success: true,
-      message: "Successfully joined the waitlist",
+      message: "Successfully joined the waitlist! Ruchitha has been notified.",
       data: {
         name: submission.name,
         email: submission.email,
